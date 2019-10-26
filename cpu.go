@@ -47,7 +47,9 @@ func (si *SysInfo) getCPUInfo() {
 
 	s := bufio.NewScanner(f)
 	for s.Scan() {
+		fmt.Println("scan text:", s.Text())
 		if sl := reTwoColumns.Split(s.Text(), 2); sl != nil {
+			fmt.Println("regex split s1[0]: ", sl[0], sl[1])
 			switch sl[0] {
 			case "physical id":
 				cpuID = sl[1]
@@ -66,7 +68,9 @@ func (si *SysInfo) getCPUInfo() {
 					si.CPU.Model = strings.Replace(model, "- ", "-", 1)
 				}
 			case "cpu MHz":
+				fmt.Println("origin cpu speed: ", si.CPU.Speed)
 				if si.CPU.Speed == 0 {
+				fmt.Println(strconv.ParseFloat(sl[1],64))
 					if speed, err:= strconv.ParseFloat(sl[1], 64);err == nil {
 						si.CPU.Speed = speed
 					}
