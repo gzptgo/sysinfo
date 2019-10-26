@@ -172,7 +172,7 @@ loop:
 		switch recType {
 		case 4:
 			if si.CPU.Speed == 0 {
-				si.CPU.Speed = uint(word(mem, p+0x16))
+				si.CPU.Speed = float64(word(mem, p+0x16))
 			}
 		case 17:
 			size := uint(word(mem, p+0x0c))

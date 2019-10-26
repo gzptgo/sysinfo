@@ -18,7 +18,7 @@ import (
 type CPU struct {
 	Vendor  string `json:"vendor,omitempty"`
 	Model   string `json:"model,omitempty"`
-	Speed   uint   `json:"speed,omitempty"`   // CPU clock rate in MHz
+	Speed   float64   `json:"speed,omitempty"`   // CPU clock rate in MHz
 	Cache   uint   `json:"cache,omitempty"`   // CPU cache size in KB
 	Cpus    uint   `json:"cpus,omitempty"`    // number of physical CPUs
 	Cores   uint   `json:"cores,omitempty"`   // number of physical CPU cores
@@ -64,6 +64,12 @@ func (si *SysInfo) getCPUInfo() {
 					// CPU model, as reported by /proc/cpuinfo, can be a bit ugly. Clean up...
 					model := reExtraSpace.ReplaceAllLiteralString(sl[1], " ")
 					si.CPU.Model = strings.Replace(model, "- ", "-", 1)
+				}
+			case "cpu MHz":
+				if si.CPU.Speed == 0 {
+					if speed, err:= strconv.ParseFloat(sl[1], 64);err == nil {
+						si.CPU.Speed = speed
+					}
 				}
 			case "cache size":
 				if si.CPU.Cache == 0 {
