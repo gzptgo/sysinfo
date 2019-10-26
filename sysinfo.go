@@ -10,7 +10,7 @@ type SysInfo struct {
 	Meta    Meta            `json:"sysinfo"`
 	Node    Node            `json:"node"`
 	OS      OS              `json:"os"`
-	Kernel  Kernel          `json:"kernel"`
+	// Kernel  Kernel          `json:"kernel"`
 	Product Product         `json:"product"`
 	Board   Board           `json:"board"`
 	Chassis Chassis         `json:"chassis"`
@@ -45,5 +45,5 @@ func (si *SysInfo) GetSysInfo() {
 
 	// Software info
 	si.getOSInfo()
-	si.getKernelInfo()
+	// si.getKernelInfo()
 }
