@@ -49,7 +49,7 @@ func (si *SysInfo) getCPUInfo() {
 	for s.Scan() {
 		fmt.Println("scan text:", s.Text())
 		if sl := reTwoColumns.Split(s.Text(), 2); sl != nil {
-			fmt.Println("regex split s1[0]: ", sl[0], sl[1])
+			fmt.Println("regex split s1: ", sl)
 			switch sl[0] {
 			case "physical id":
 				cpuID = sl[1]
