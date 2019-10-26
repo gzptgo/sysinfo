@@ -4,12 +4,6 @@
 
 package sysinfo
 
-import (
-	"strings"
-	"syscall"
-	"unsafe"
-)
-
 // // Kernel information.
 // type Kernel struct {
 // 	Release      string `json:"release,omitempty"`
